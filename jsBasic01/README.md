@@ -121,9 +121,9 @@ myCar
 ```js
 var message; // var 키워드, message 식별자
 
-var message = "Hi"; 	// 할당
-var message = 20; 		// 어떤 값이든
-var message = true; 	// 할당할 수 있다.
+var message = "Hi";     // 할당
+var message = 20;       // 어떤 값이든
+var message = true;     // 할당할 수 있다.
 ```
 
 헝가리언 표기법
@@ -220,8 +220,8 @@ console.log(withVar);
 
 ```js
 var message = "some string";
-console.log(typeof message);	// "string"
-console.log(typeof 95);			// "number"
+console.log(typeof message);    // "string"
+console.log(typeof 95);         // "number"
 ```
 
 * 정의되지 않은 변수 : "undefined"
@@ -270,17 +270,17 @@ console.log(anotherArr);
 ### undefined
 
 ```js
-var message;						// 이 변수는 선언되었지만 값을 초기화 하지 않았습니다.
-console.log(message);				// undefined
-console.log(message === undefined);	// true
+var message;                        // 이 변수는 선언되었지만 값을 초기화 하지 않았습니다.
+console.log(message);               // undefined
+console.log(message === undefined); // true
 ```
 
 ```js
 var message;
-// var age 				// 이 변수는 선언되지 않았습니다.
+// var age                          // 이 변수는 선언되지 않았습니다.
 
-console.log(message);	// undefined
-console.log(age);		// 에러
+console.log(message);               // undefined
+console.log(age);                   // 에러
 ```
 
 1. 변수를 선언하고 그 변수에 값을 대입하지 않은 경우
@@ -331,7 +331,7 @@ console.log('sum3 : ', sum3, typeof sum3);
 console.log('numMax : ', numMax, typeof numMax);
 ```
 
-**소수점 연산 오류 **
+**소수점 연산 오류**
 
 ```js
 var a = 0.1;
@@ -371,7 +371,7 @@ console.log(Number(true));
 console.log(Number(null));
 ```
 
-> 숫자형 값 중에는 NaN(Not a Number) 라는 특별한 값이 있습니다. 이 값은 숫자를 반활할 것으로 의도학 조작이 실패했을 때 반환하는 값입니다.
+> 숫자형 값 중에는 NaN(Not a Number) 라는 특별한 값이 있습니다. 이 값은 숫자를 반활할 것으로 의도한 조작이 실패했을 때 반환하는 값입니다.
 
 #### 진수 표기
 
@@ -395,12 +395,12 @@ console.log(phoneNumber2);
 console.log(phoneNumber3);
 
 var numOct2 = 079;
-console.log(numOct2);	// 9가 범위를 벗어 났으며 79로 간주
+console.log(numOct2);               // 9가 범위를 벗어 났으며 79로 간주
 
-var pNum1 = parseInt('10', 2);	// 2진수 10은 10진수 2
-var pNum2 = parseInt('10', 8);	// 8진수 10은 10진수 8
-var pNum3 = parseInt('10', 10);	// 10
-var pNum4 = parseInt('10', 16);	// 16진수 10은 10진수 16
+var pNum1 = parseInt('10', 2);      // 2진수 10은 10진수 2
+var pNum2 = parseInt('10', 8);      // 8진수 10은 10진수 8
+var pNum3 = parseInt('10', 10);     // 10
+var pNum4 = parseInt('10', 16);     // 16진수 10은 10진수 16
 ```
 
 > `partseInt()`에  진법 매개변수를 넘기지 않으면 브라우저에서 숫자의 형식을 판단하도록 일임하는 것이므로 의도와 다른 결과가 나올 수 있습니다. 항상 진법 매개변수를 명시해서 오류를 예방하는 편이 좋습니다.
@@ -625,14 +625,6 @@ var objInstance = {
 }
 ```
 
-Object 인스턴스의 주요 프로퍼티와 메서드
-
-* constructor - 해당 객체를 만드는 데 쓰인 함수
-* toString() - 객체를 문자열로 변환해 반환
-* valueOf() - 객체를 나타내는 문자열이나 숫자, 불리언을 반환, toString() 과 같은 값을 반환할 때가 많습니다.
-
-> ECMAScript 정의하는 모든 객체는 Object에 기반해 만들어지므로 이들 프로퍼티와 메서드는 모든 객체에 존재합니다.
-
 ## 연산자
 
 ### 산술 연산자
@@ -656,11 +648,11 @@ console.log(odd % 2 === 1);
 * 피연산자 중 하나가 문자열이면, 다른 피연산자를 문자열로 변환하고 두 문자열을 합칩니다.
 
 ```js
-var result1 = 5 + 5;		// 숫자 두 개
-console.log(result1);		// 10
+var result1 = 5 + 5;        // 숫자 두 개
+console.log(result1);       // 10
 
-var result2 = 5 + '5';		// 숫자 한 개와 문자열 한개
-console.log(result2);		// '55'
+var result2 = 5 + '5';      // 숫자 한 개와 문자열 한개
+console.log(result2);       // '55'
 
 var num1 = 5,
     num2 = 10;
@@ -672,7 +664,7 @@ console.log(message);
 ### 대입 연산자(할당)
 
 ```js
-var a = a + 2;		// 1. a + 2 연산
+var a = a + 2;      // 1. a + 2 연산
                     // 2. a = (a + 2) 대입
                     
 var a += 2;
@@ -737,7 +729,7 @@ console.log(1 == '1');
 console.log(1 === '1');
 ```
 
-`anti-pattern`
+>anti-pattern
 
 ### 3항 연산자
 
@@ -874,15 +866,15 @@ console.log(str);
 
 ```js
 if(i > 25)
-    console.log('Greater than 25.');			// 한 줄 문장
+    console.log('Greater than 25.');            // 한 줄 문장
 else {
-    console.log('Less than or equal to 25.');	// 블록문장
+    console.log('Less than or equal to 25.');   // 블록문장
 }
 ```
 
 **단 한 줄의 코드만 실행하더라고 코드 블록을 쓰기를 권합니다. 조건에 따라 어느 문장을 실행하는지 분명하게 파악 가능합니다.**
 
-> jsStd_prac01/if.html
+> jsBasic_prac01/if.html
 > - str의 문자열 길이가 10 이하일 경우 str의 값을 출력하고, 그보다 클 경우에는 "입력할 수 있는 글자는 최대 10글자입니다."라고 출력해주세요.
 > - subject의 문자열에 "[javascript스터디]"가 포함되어 있을 경우 "OK"를 출력하고, 포함되어 있지 않을 경우에는 "유효하지 않은 메일 제목입니다."를 출력해주세요.
 > - grade의 값에 따라 아래와 같이 출력해 주세요.
@@ -944,7 +936,7 @@ switch (day) {
 }
 ```
 
-> jsStd_prac01/switch.html
+> jsBasic_prac01/switch.html
 > - color 값에 따라 아래와 같이 출력해 주세요
 >    'red' 또는 'FF0000' 일 경우 'set red color'
 >    'green 또는 '00FF00' 일 경우 'set green color'
@@ -981,13 +973,13 @@ for (var i = 0, total = objLi.length; i < total; i++) {
 }
 ```
 
-> jsStd_prac01/for.html
+> jsBasic_prac01/for.html
 > - '자바스크립트 스터디' 를 한 글자씩 출력해 주세요.
 > - 10부터 30 까지 짝수만 출력해 주세요.
 > - ul 안에 'data 1' 부터 'data 12' 까지의 글자를 가진 12개의 li를 생성해 주세요.
 >    각각의 li는 style1, style,2, style3 의 클래스를 순차적으로 적용해 주세요.
 
-> jsStd_prac01/forfor.html
+> jsBasic_prac01/forfor.html
 > - 구구단을 아래와 같이 출력해 주세요. (출력해야 할 값들을 변수에 담아 한 번만 출력해주세요.)
 
 ```bash
@@ -1036,7 +1028,7 @@ while(i <= 10) {
 
 > 무한루프 주의, i가 순환문 안에서 업데이트 되야한다.
 
-> jsStd_prac01/while.html
+> jsBasic_prac01/while.html
 > - 빈 배열을 하나 생성하고, 그 안에 0~10 사이의 임의의 수를 생성해서 넣습니다. 배열의 길이가 5개 될 때까지 임의의 수를 넣은 후, 배열을 출력해 주세요.
 
 ### do-while 문
@@ -1053,7 +1045,7 @@ do {
 } while(value != 'end');
 ```
 
-> jsStd_prac01/dowhile.html
+> jsBasic_prac01/dowhile.html
 > 무인도 탈출 게임
 > 1. '무인도에 도착했습니다' 출력
 > 2. 두개의 1~6 까지의 임의의 숫자를 생성하고 출력
