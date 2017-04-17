@@ -16,7 +16,7 @@ RegExp 타입
 | a\*b          | a가 0 or more       | `aab`c abc bc           | `aab`c `ab`c `b`c           |
 | a+b           | a가 1 or more       | `aab`c abc bc           | `aab`c `ab`c bc             |
 | a?b           | a가 0 or 1          | a`ab`c abc bc           | a`ab`c `ab`c `b`c           |
-| .{m}          | 임의문자 m개            | `12345`6789ab           | `123456789a`b               |
+| .{m} `.{5}`   | 임의문자 m개            | `12345`6789ab           | `123456789a`b               |
 | [els]{1,3}    | e, l, s 중 최소1, 최대3 | in th`e` darkness       | in th`e` darkn`ess`         |
 | [a-z]{3,}     | a~z 중 최소3          | One `two` three         | One `two` `three`           |
 
