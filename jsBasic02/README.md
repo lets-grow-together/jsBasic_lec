@@ -4,15 +4,18 @@ Javascript Study Step02
 
 ## 참조타입
 
-참조 값(객체)이란 특정 **참조 타입**의 인스턴스 입니다. 참조 타입은 객체가 가져야 할 프로퍼티와 메서드를 정의합니다.
-객체를 생성할 때는 new 연산자 뒤에 **생성자**를 씁니다. 생성자는 객체를 생성하는 함수입니다.
+* 참조 값(객체)이란 특정 **참조 타입**의 인스턴스 입니다.
+* 객체(인스턴스)를 생성할 때는 new 연산자 뒤에 **생성자**를 씁니다.
+* 생성자는 객체를 생성하는 함수입니다.
 
-다음은 참조타입 Object의 인스턴스를 생성해서 변수 person에 할당합니다.
+다음은 참조타입 Object와 Array의 인스턴스를 생성해서 변수에 할당합니다.
 
 ```js
 var objInstance = new Object();
-
 objInstance instanceof Object;
+
+var arrayInstance = new Array();
+arrayInstance instanceof Array;
 ```
 
 ### Object 타입
@@ -69,10 +72,10 @@ console.log( obj[variable] );
 
 #### Object 인스턴스 프로퍼티, 메서드
 
-* constructor - 생성자, 해당 객체를 만드는 데 쓰인 함수를 가리킵니다. `Object()`
+* constructor - 해당 객체를 만드는 데 쓰인 함수(생성자)를 가리킵니다. `Object()`
 * hasOwnProperty(propertyName) - 프로퍼티가 프로토타입에서 상속받지 않고 해당 객체 인스턴스의 고유한 프로퍼티인지 확인합니다.
 * toString() - 객체를 문자열로 변환해 반환합니다.
-* valueOf() - 객체를 나타내는 문자열이나 숫자, 불리언을 반환합니다. toString()과 같은 값을 반환할 때가 많습니다.
+* valueOf() - 객체를 나타내는 문자열이나 숫자, 불리언을 반환합니다. `toString()`과 같은 값을 반환할 때가 많습니다.
 
 ### Array 타입
 
@@ -86,14 +89,15 @@ console.log( obj[variable] );
 
 ```js
 var arr1 = new Array();
-var arr2 = [];
 
 arr[0] = 'a';
 arr[1] = 'b';
 arr[2] = 'c';
 
-var arr3 = new Array('a', 'b', 'c');        // 문자열 값이 세 개 있는 배열 생성
-var arr4 = new Array(3);                    // 크기가 3인 배열 생성
+var arr2 = new Array('a', 'b', 'c');        // 문자열 값이 세 개 있는 배열 생성
+var arr3 = new Array(3);                    // 크기가 3인 배열 생성
+
+var arr4 = [];                              // new Array() 와 동일
 ```
 
 * 배열 리터럴 표기법
@@ -125,7 +129,7 @@ colors[3] = 'brown';                // 네 번째 데이터 추가
 
 #### length 프로퍼티
 
-> 배열에 저장된 데이터의 갯수
+배열에 저장된 데이터의 갯수
 
 ```js
 var colors = ['red', 'blue', 'green'],
@@ -139,6 +143,23 @@ var colors = ['red', 'blue', 'green'];  // 문자열 세 개 있는 배열, leng
 colors[colors.length] = 'black';        // 인덱스 3에 데이터 추가
 colors[colors.length] = 'brown';        // 인덱스 4에 데이터 추가
 console.log(colors.length, colors);
+```
+
+#### join()
+
+배열 데이터를 구분자와 결합하여 문자열을 반환합니다.
+
+```js
+arr.join(separator);
+```
+
+```js
+var arr = ['Wind', 'Rain', 'Fire'];
+
+console.log( arr.join() );              // 'Wind,Rain,Fire'
+console.log( arr.join(', ') );          // 'Wind, Rain, Fire'
+console.log( arr.join(' + ') );         // 'Wind + Rain + Fire'
+console.log( arr.join('') );            // 'WindRainFire'
 ```
 
 #### push() / pop() 메서드
@@ -176,72 +197,6 @@ console.log('item:', item, 'colors:', colors);
 
 > * 큐 FIFO : push() / shift()
 > 큐 구조는 데이터를 마지막에 추가하고 맨 앞에서 제거 합니다.
-
-#### sort() / reverse()
-
-배열의 순서를 조작합니다.
-
-* sort() - 배열의 데이터를 문자열로 변환하여 오름순으로 정렬합니다.
-* reverse() - 배열의 데이터를 역순으로 변경합니다.
-
-```js
-var values = [1, 2, 3, 4, 5];
-values.reverse();
-
-console.log(values);            // 5,4,3,2,1
-```
-
-> 배열 자체를 변경합니다.(파괴적 메서드)
-
-> sort() 메서드는 기본적으로 데이터를 오름차순을 정렬합니다.
-> sort() 메서드는 이를 위해 이면에서 String() 함수를 함수를 호출해 데이터를 문자열로 변환한 후 이를 비교하여 순서를 판단합니다.
-> 이는 숫자로 이루어진 배열에도 똑같이 동작하여 상식적이지 않은 결과를 나타냅니다.
-
-```js
-var values = [0, 1, 5, 10, 15];
-values.sort();
-
-console.log(values);              // 0,1,10,15,5
-```
-
-비교함수로 정렬규칙을 정할 수 있습니다.
-
-```js
-arr.sort(compareFunction);
-```
-
-> 비교함수의 역할 - 음수나 0, 양수 중 하나를 반환한다.
-> * 첫 번째 매개변수가 두 번째 매개변수보다 앞에 있어야 한다면 음수 반환
-> * 첫 번째 매개변수가 두 번째 매개변수보다 뒤에 있어야 한다면 양수 반환
-> * 두 매개변수의 순서가 같다면 0
-
-```js
-function compare(value1, value2) {
-    if(value1 < value2) {
-        return -1;
-    } else if(value1 > value2) {
-        return 1;
-    } else {
-        return 0;
-    }
-}
-
-var values = [0, 1, 5, 10, 15];
-values.sort(compare);
-
-console.log(values);            // 0,1,5,10,15
-```
-
-```js
-function compare(value1, value2) {
-    return value1 - value2;
-}
-```
-
-> jsBasic_prac02/array.html
-> - data 배열에 있는 객체를 직급레벨 순서에 맞게 정렬해보세요.
-
-[Array.prototype.sort() - JavaScript | MDN](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
 
 #### slice()
 
@@ -316,21 +271,79 @@ var colors = ['red', 'green', 'blue'];
 console.log('removed:', removed, 'colors:', colors);
 ```
 
-#### join()
+#### sort() / reverse()
 
-배열 데이터를 구분자와 결합하여 문자열을 반환합니다.
+배열의 순서를 조작합니다.
+
+* sort() - 배열의 데이터를 문자열로 변환하여 오름순으로 정렬합니다.
+* reverse() - 배열의 데이터를 역순으로 변경합니다.
 
 ```js
-arr.join(separator);
+var values = [1, 2, 3, 4, 5];
+values.reverse();
+
+console.log(values);            // 5,4,3,2,1
+```
+
+> 배열 자체를 변경합니다.(파괴적 메서드)
+
+> sort() 메서드는 기본적으로 데이터를 오름차순을 정렬합니다.
+> sort() 메서드는 이를 위해 이면에서 String() 함수를 함수를 호출해 데이터를 문자열로 변환한 후 이를 비교하여 순서를 판단합니다.
+> 이는 숫자로 이루어진 배열에도 똑같이 동작하여 상식적이지 않은 결과를 나타냅니다.
+
+```js
+var values = ['a', 'A', 'C', 'c', 'b', 'B'];
+values.sort();
+
+console.log(values);              // A,B,C,a,b,c
 ```
 
 ```js
-var arr = ['Wind', 'Rain', 'Fire'];
-arr.join();             // 'Wind,Rain,Fire'
-arr.join(', ')          // 'Wind, Rain, Fire'
-arr.join(' + ');        // 'Wind + Rain + Fire'
-arr.join('');           // 'WindRainFire'
+var values = [0, 1, 5, 10, 15];
+values.sort();
+
+console.log(values);              // 0,1,10,15,5
 ```
+
+비교함수로 정렬규칙을 정할 수 있습니다.
+
+```js
+arr.sort(compareFunction);
+```
+
+> 비교함수의 역할 - 음수나 0, 양수 중 하나를 반환한다.
+> * 첫 번째 매개변수가 두 번째 매개변수보다 앞에 있어야 한다면 음수 반환
+> * 첫 번째 매개변수가 두 번째 매개변수보다 뒤에 있어야 한다면 양수 반환
+> * 두 매개변수의 순서가 같다면 0
+
+```js
+function compare(value1, value2) {
+    if(value1 < value2) {
+        return -1;
+    } else if(value1 > value2) {
+        return 1;
+    } else {
+        return 0;
+    }
+}
+
+var values = [0, 1, 5, 10, 15];
+values.sort(compare);
+
+console.log(values);            // 0,1,5,10,15
+```
+
+```js
+// 데이터들이 숫자로만 되어있다면 단순히 빼면된다.
+function compare(value1, value2) {
+    return value1 - value2;
+}
+```
+
+> jsBasic_prac02/array.html
+> - data 배열에 있는 객체를 직급레벨 순서에 맞게 정렬해보세요.
+
+[Array.prototype.sort() - JavaScript | MDN](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/sort)
 
 ### Date 타입
 
@@ -374,7 +387,7 @@ var allFives = new Date(2005, 4, 5, 17, 55, 55);
 
 #### Date.now()
 
-ECMAScript 5에서 Date 객체에 추가된 메서드, 현재 시각을 밀리초 표현으로 반환합니다.(IE9+)
+ECMAScript 5에서 Date 객체에 추가된 정적 메서드, 현재 시각을 밀리초 표현으로 반환합니다.(IE9+)
 
 ```js
 // 시작시간
@@ -442,7 +455,9 @@ var pattern4 = /\.at/gi;
 
 ### 함수
 
-함수는 문장을 캡슐화하여 어디서든, 언제든 실행할 수 있게한다.
+* 함수는 실행문장들을 집합처럼 감싸고 있습니다.
+* 함수는 코드의 재사용이나 정보의 구성 및 은닉 등에 사용하고,
+* 객체의 행위를 지정하는 데 사용합니다.
 
 ```js
 // 함수선언
@@ -458,19 +473,22 @@ function sayHi(name, message) {
 }
 
 sayHi('Bob', 'How are you?');
+```
 
+```js
 // 함수표현식
 var sum = function(num1, num2) {
     return num1 + num2;
 };
 ```
 
-* Parameter(인자, 매개변수) : 함수 선언에 사용하는 변수
+* Parameter(인자, 매개변수) : 함수 선언과 함수 내부에서 사용하는 변수
 * Argument(인수) : 함수 호출에 사용하는 입력 값
 
 #### 반환 값(return)
 
-함수는 꼭 값을 반환하지 않아도 되지만, 언제든 `return` 문 뒤에 반환할 값을 써서 값을 반환 할 수 있습니다.
+* 함수를 호출하면 함수 몸체의 첫 문장부터 끝까지 실행하고 프로그램의 제어가 함수를 호출한 부분으로 반환됩니다.
+* 함수는 꼭 값을 반환하지 않아도 되지만, 언제든 `return` 문 뒤에 반환할 값을 써서 값을 반환하고 함수를 종료할 수 있습니다.
 
 ```js
 function sum(num1, num2) {
@@ -482,7 +500,7 @@ var result = sum(5, 10);
 console.log(result);
 ```
 
-함수는 return 문을 만나는 즉시 실행을 멈추고 빠져나옵니다. 따라서 return 문 뒤의 코드는 실행되지 않습니다.
+* 함수는 return 문을 만나는 즉시 실행을 멈추고 빠져나옵니다. 따라서 return 문 뒤의 코드는 실행되지 않습니다.
 
 ```js
 function sum(num1, num2) {
@@ -506,8 +524,8 @@ function diff(num1, num2) {
 함수도 값이 올 수 있는 곳이라면 어디든 사용할 수 있습니다. 함수를 매개변수로 넘기거나, 함수의 실행결과로 함수를 반환하는 것이 가능합니다.
 
 ```js
-function callFunction(func, arg) {
-    return func(arg);
+function callFunction(func, param) {
+    return func(param);
 }
 
 function add10(num) {
@@ -525,9 +543,7 @@ var result2 = callFunction(getGreeting, 'Bob');
 console.log(result2);                       // `Hello, Bob';
 ```
 
-#### 호이스팅
-
-##### 함수선언 호이스팅
+#### 함수선언 호이스팅
 
 자바스크립트 엔진이 코드를 평가할 때 함수 선언을 먼저 찾은 다음 함수 선언을 끌어올립니다(hoist)
 
@@ -545,7 +561,7 @@ var sum = function(num1, num2) {
 }
 ```
 
-##### 변수 호이스팅
+#### 변수 호이스팅
 
 ```js
 var scope = 'global';
@@ -602,7 +618,7 @@ console.log(sayHi.length);
 
 * prototype - 참조 타입의 인스턴스 메서드가 존재하는 객체입니다.
 
-* apply() / call() - 함수를 호출하면서 컨텍스트와 인수를 넘긴다.
+* apply() / call() - 함수를 호출하면서 컨텍스트와 인수를 넘길 수 있습니다..
 
 ```js
 function sum(num1, num2) {
@@ -613,7 +629,7 @@ function callSum1(num1, num2) {
     return sum.apply(this, [num1, num2]);   // 배열로 인수를 넘깁니다.
 }
 function callSum2(num1, num2) {
-    return sum.applay(this, arguments);     // arguments 객체를 넘깁니다.
+    return sum.apply(this, arguments);     // arguments 객체를 넘깁니다.
 }
 
 console.log(callSum1(10, 10));              // 20

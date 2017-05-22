@@ -285,11 +285,11 @@ console.log(age);                   // 에러
 
 1. 변수를 선언하고 그 변수에 값을 대입하지 않은 경우
 2. 객체의 정의되지 않은 프로퍼티에 접근하는 경우
-3. 함수 인자를 정의했으나 그 인자에 값이 전달되지 않은 경우
+3. 함수 매개변수를 정의했으나 그 매개변수에 값이 전달되지 않은 경우
 
 ### null
 
-빈 객체를 가르키는 포인터
+빈 객체를 가리키는 포인터
 
 ### 불리언 타입
 
@@ -466,7 +466,7 @@ var str = 'It\'s alright';
 **문자열 객체의 인스턴스 생성**
 
 ```js
-// String 객체의 인스턴스는 String 객체의 프로퍼티 또는 메서드 사용 가능
+// String 객체타입의 인스턴스는 String 객체타입의 프로퍼티 또는 메서드 사용 가능
 var strObj = new String('Javascript');
 console.log('strObj.length: ', strObj.length);
 
@@ -477,7 +477,7 @@ console.log('newStrObj: ', newStrObj);
 **리터럴 방식으로 생성**
 
 ```js
-// 리터럴로 생성하여도 String 객체의 인스턴스 처럼 프로퍼티와 메서드 사용 가능
+// 리터럴 방식으로 생성하여도 String 객체타입의 인스턴스 처럼 프로퍼티와 메서드 사용 가능
 var strLiteral = "Javascript";
 console.log('strLiteral.length: ', strLiteral.length);
 
@@ -485,15 +485,17 @@ var newStrLiteral = strLiteral.toUpperCase();
 console.log('newStrLiteral: ', newStrLiteral);
 ```
 
+리터럴 방식으로 생성한 문자열과 String 생성자로 생성한 문자열의 차이점
+
 ```js
 var strObj = new String('Javascript');
 var strLiteral = "Javascript";
 
-console.log('typeof strObj: ', typeof strObj);
-console.log('typeof strLiteral: ', typeof strLiteral);
+console.log('typeof strObj: ', typeof strObj);          // object
+console.log('typeof strLiteral: ', typeof strLiteral);  // string
 ```
 
-> Javascript 에서는 주로 리터럴 형태로 선언합니다.
+> Javascript 에서는 주로 리터럴 방식으로 문자열을 선언합니다.
 
 #### 문자열 연결
 
