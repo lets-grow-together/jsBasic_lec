@@ -39,7 +39,7 @@ changeColor();
 
 *****
 
-## arguments, this 객체
+## this, arguments 객체
 
 함수를 호출하면 프로그램의 제어를 매개변수와 함께 호출한 함수로 넘깁니다.
 모든 함수는 명시되어 있는 매개변수에 더해서 `this`와 `arguments` 라는 추가적인 매개변수를 받게 됩니다.
@@ -116,11 +116,16 @@ console.log( object.getNameFunc()() );
 
 #### 생성자 호출 패턴
 
+1. 객체를 생성
+2. 생성자의 `this` 값에 새 객체를 할당()
+3. 생성자 내부코드 실행(객체에 프로퍼티 추가)
+4. 새 객체 반환
+
 생성자로 생성한 객체가 this에 바인딩 됩니다.
 
 #### apply 호출 패턴
 
-함수 호출을 하면서 `this` 와 인수를 넘길 수 있다.
+함수 호출을 하면서 `this` 와 인수를 넘길 수 있습니다.
 
 ```js
 func.apply(thisArg, [argsArray])
@@ -137,6 +142,30 @@ function sayColor() {
 
 sayColor();
 sayColor.call(o);
+```
+
+```js
+function Person(name, age, job) {
+    this.name = name;
+    this.age = age;
+    this.job = job;
+    this.sayName = function() {
+        console.log(this.name);
+    }
+}
+
+// 생성자로 사용
+var person = new Person('Chris', 21, 'Teacher');
+person.sayName();           // Chris
+
+// 함수로 호출
+Person('Bob', 22, 'Farmer');
+window.sayName();           // Bob
+
+// 다른 객체의 스코프에서 호출
+var o = new Object();
+Person.call(o, 'Teddy', 'Engineer');
+o.sayName();                // Teddy
 ```
 
 ### arguments 객체

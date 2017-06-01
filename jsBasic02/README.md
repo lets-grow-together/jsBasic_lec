@@ -4,6 +4,7 @@ Javascript Study Step02
 
 ## 참조타입
 
+* Object 타입, Array 타입, Date 타입, RegExp 타입, Function 타입 ...
 * 참조 값(객체)이란 특정 **참조 타입**의 인스턴스 입니다.
 * 객체(인스턴스)를 생성할 때는 new 연산자 뒤에 **생성자**를 씁니다.
 * 생성자는 객체를 생성하는 함수입니다.
@@ -94,8 +95,8 @@ arr[0] = 'a';
 arr[1] = 'b';
 arr[2] = 'c';
 
-var arr2 = new Array('a', 'b', 'c');        // 문자열 값이 세 개 있는 배열 생성
-var arr3 = new Array(3);                    // 크기가 3인 배열 생성
+var arr2 = new Array(1, 2, 3);              // 숫자값이 세 개 있는 배열 생성
+var arr3 = new Array(3);                    // 크기가 3인 배열 생성(confuse!)
 
 var arr4 = [];                              // new Array() 와 동일
 ```
@@ -122,9 +123,9 @@ var arr2 = [
 ```js
 var colors = ['red', 'blue', 'green'];
 
-console.log(colors[0]);             // 첫 번째 데이터 표시
-colors[2] = 'black';                // 세 번째 데이터 변경
-colors[3] = 'brown';                // 네 번째 데이터 추가
+console.log(colors[0]);                 // 첫 번째 데이터 표시
+colors[2] = 'black';                    // 세 번째 데이터 변경
+colors[3] = 'brown';                    // 네 번째 데이터 추가
 ```
 
 #### length 프로퍼티
@@ -162,7 +163,7 @@ console.log( arr.join(' + ') );         // 'Wind + Rain + Fire'
 console.log( arr.join('') );            // 'WindRainFire'
 ```
 
-#### push() / pop() 메서드
+#### push() / pop()
 
 ```js
 var colors = [];                                    // 배열 생성
@@ -177,7 +178,7 @@ var item = colors.pop();                            // 마지막 데이터 꺼�
 console.log('item:', item, 'colors:', colors);
 ```
 
-#### shift() / upshift() 메서드
+#### shift() / upshift()
 
 ```js
 var colors = [];
@@ -198,14 +199,35 @@ console.log('item:', item, 'colors:', colors);
 > * 큐 FIFO : push() / shift()
 > 큐 구조는 데이터를 마지막에 추가하고 맨 앞에서 제거 합니다.
 
-#### slice()
+#### concat()
 
-배열에 포함된 데이터 일부를 가진 **새 배열** 을 만듭니다.
+기존 배열에 인자로 주어진 값이나 배열을 기존 배열과 합쳐서 **새 배열** 을 반환합니다.
 
 ```js
-arr.slice();
-arr.slice(begin);
-arr.slice(begin, end);
+var newArray = originArray.concat([value1[, value2[, ...[, valueN]]]]);
+```
+
+```js
+var alpha = ['a', 'b', 'c'],
+    numeric = [1, 2, 3];
+
+var newAlpha = alpha.concat(),
+    alphaNumeric = alpha.concat(numeric),
+    alphaNumeric2 = alpha.concat(1, [2, 3]);
+
+console.log(newAlpha);
+console.log(alphaNumeric);
+console.log(alphaNumeric2);
+```
+
+#### slice()
+
+배열에 포함된 데이터 일부를 가진 **새 배열** 을 반환합니다.
+
+```js
+newArray = originArray.slice();
+newArray = originArray.slice(begin);
+newArray = originArray.slice(begin, end);
 ```
 
 ```js
@@ -220,9 +242,9 @@ console.log(color2);
 console.log(color3);
 ```
 
-> slice() 메서드는 원래 배열을 건드리지 않습니다.
+> concat() / slice() 메서드는 원래 배열을 변경하지 않습니다.
 
-얕은복사(shallow copy) VS 깊은복사(deep copy)
+배열복사
 
 ```js
 var arr = ['a', 'b', 'c'],
@@ -234,10 +256,11 @@ console.log('arr:', arr, 'copiedArr:', copiedArr);
 
 ```js
 var arr = ['a', 'b', 'c'],
-    copiedArr = arr.slice();
+    copiedArr = arr.slice(),
+    copiedArr2 = arr.concat();
     
 arr.pop();
-console.log('arr:', arr, 'copiedArr:', copiedArr);
+console.log('arr:', arr, 'copiedArr:', copiedArr, 'copiedArr2:', copiedArr2);
 ```
 
 #### splice()
@@ -282,7 +305,7 @@ console.log('removed:', removed, 'colors:', colors);
 var values = [1, 2, 3, 4, 5];
 values.reverse();
 
-console.log(values);            // 5,4,3,2,1
+console.log(values);                // 5,4,3,2,1
 ```
 
 > 배열 자체를 변경합니다.(파괴적 메서드)
@@ -295,14 +318,14 @@ console.log(values);            // 5,4,3,2,1
 var values = ['a', 'A', 'C', 'c', 'b', 'B'];
 values.sort();
 
-console.log(values);              // A,B,C,a,b,c
+console.log(values);                // A,B,C,a,b,c
 ```
 
 ```js
 var values = [0, 1, 5, 10, 15];
 values.sort();
 
-console.log(values);              // 0,1,10,15,5
+console.log(values);                // 0,1,10,15,5
 ```
 
 비교함수로 정렬규칙을 정할 수 있습니다.
@@ -382,8 +405,10 @@ var allFives = new Date(2005, 4, 5, 17, 55, 55);
 | 분    | getMinutes()  | setMinutes()  | 0~59        |
 | 초    | getSeconds()  | setSeconds()  | 0~59        |
 
+> jsBasic_prac02/date.html
 > * 오늘 날짜를 년/월/일 형태로 출력하기
 > * 현재시간을 시:분:초 형태로 출려하기
+> * 1월 1일이면 'Happy new year!' 를 출력하기, 그 외에는 오늘 날짜 출력하기
 
 #### Date.now()
 
@@ -541,6 +566,21 @@ function getGreeting(name) {
 
 var result2 = callFunction(getGreeting, 'Bob');
 console.log(result2);                       // `Hello, Bob';
+```
+
+```js
+function makeCounter() {
+    var count = 0;
+
+    return function() {
+        count++;
+        console.log(count);
+    }
+}
+
+var countSomething = makeCounter();
+countSomething();
+countSomething();
 ```
 
 #### 함수선언 호이스팅
