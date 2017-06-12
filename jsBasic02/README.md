@@ -334,7 +334,7 @@ console.log(values);                // 0,1,10,15,5
 arr.sort(compareFunction);
 ```
 
-> 비교함수의 역할 - 음수나 0, 양수 중 하나를 반환한다.
+> 비교함수의 역할 - 음수나 0, 양수 중 하나를 반환합니다.
 > * 첫 번째 매개변수가 두 번째 매개변수보다 앞에 있어야 한다면 음수 반환
 > * 첫 번째 매개변수가 두 번째 매개변수보다 뒤에 있어야 한다면 양수 반환
 > * 두 매개변수의 순서가 같다면 0
@@ -357,7 +357,7 @@ console.log(values);            // 0,1,5,10,15
 ```
 
 ```js
-// 데이터들이 숫자로만 되어있다면 단순히 빼면된다.
+// 데이터들이 숫자로만 되어있다면 단순히 빼면됩니다.
 function compare(value1, value2) {
     return value1 - value2;
 }
@@ -440,7 +440,7 @@ var stop = +new Date(),
 
 ### RegExp 타입
 
-ECMAScriptㄴ는 RegExp 타입을 통해 정규표현식을 지원합니다.
+ECMAScript는 RegExp 타입을 통해 정규표현식을 지원합니다.
 
 ```js
 var expression = /pattern/flags;
@@ -480,17 +480,20 @@ var pattern4 = /\.at/gi;
 
 ### 함수
 
+자바스크립트에서 함수는 객체입니다. 모든 함수는 Function 타입의 인스턴스이며 다른 참조타입과 마찬가지로 프로퍼티와 메서드가 있습니다.
+
 * 함수는 실행문장들을 집합처럼 감싸고 있습니다.
-* 함수는 코드의 재사용이나 정보의 구성 및 은닉 등에 사용하고,
-* 객체의 행위를 지정하는 데 사용합니다.
+* 함수는 코드의 재사용이나 정보의 구성 및 은닉 등에 사용하고, 객체의 행위를 지정하는 데 사용합니다.
+* 함수는 보통 함수 선언 문법으로 정의하거나 함수 표현식으로 변수에 할당합니다.
+* 함수를 다른 객체와 구분되는 특징은 호출할 수 있다는 것입니다.
 
 ```js
-// 함수선언
+// 함수 선언
 function functionName(param0, param1, ..., paramN) {
     statements;
 }
 
-// 함수호출
+// 함수 호출/실행
 functionName(arg1, arg2, ..., argN);
 
 function sayHi(name, message) {
@@ -501,14 +504,15 @@ sayHi('Bob', 'How are you?');
 ```
 
 ```js
-// 함수표현식
+// 함수표현식 - 익명함수를 변수에 할당
 var sum = function(num1, num2) {
     return num1 + num2;
 };
 ```
 
 * Parameter(인자, 매개변수) : 함수 선언과 함수 내부에서 사용하는 변수
-* Argument(인수) : 함수 호출에 사용하는 입력 값
+* Argument(인수) : 함수 호출시 입력 값
+* 함수호출 시 매개변수는 인수로 초기화 됩니다. 인수가 전달되지 않은 매개변수는 `undefined`로 초기화 됩니다.
 
 #### 반환 값(return)
 
@@ -546,10 +550,10 @@ function diff(num1, num2) {
 
 #### 값처럼 쓰는 함수
 
-함수도 값이 올 수 있는 곳이라면 어디든 사용할 수 있습니다. 함수를 매개변수로 넘기거나, 함수의 실행결과로 함수를 반환하는 것이 가능합니다.
+함수도 값이 올 수 있는 곳이라면 어디든 사용할 수 있습니다. 함수를 변수에 저장하거나, 함수의 매개변수 값으로 넘기거나, 함수의 실행결과로 함수를 반환하는 것이 가능합니다.
 
 ```js
-function callFunction(func, param) {
+var callFunction = function(func, param) {
     return func(param);
 }
 
@@ -585,20 +589,54 @@ countSomething();
 
 #### 함수선언 호이스팅
 
-자바스크립트 엔진이 코드를 평가할 때 함수 선언을 먼저 찾은 다음 함수 선언을 끌어올립니다(hoist)
+자바스크립트 엔진이 코드를 평가할 때 함수 선언을 먼저 찾은 다음 함수 선언을 끌어올립니다.(hoist)
 
 ```js
+// 함수선언
 console.log( sum(10, 10) );
+
 function sum(num1, num2) {
     return num1 + num2;
 }
 ```
 
 ```js
+// 함수표현식
 console.log( sum(10, 10) );
+
 var sum = function(num1, num2) {
     return num1 + num2;
 }
+```
+
+```js
+// 함수선언
+function sum(num1, num2) {
+    console.log( num1 + ' + ' + num2);
+}
+
+sum(10, 20);
+
+function sum(num1, num2) {
+    console.log(num1 +num2);
+}
+
+sum(30, 40);
+```
+
+```js
+// 함수표현식
+var sum = function(num1, num2) {
+    console.log(num1 + ' + ' + num2);
+}
+
+sum(10, 20);
+
+var sum = function(num1, num2) {
+    console.log(num1 + num2);
+}
+
+sum(30, 40);
 ```
 
 #### 변수 호이스팅
@@ -621,20 +659,10 @@ function show() {
 }
 ```
 
-지역변수가 선언되기 전에 변수 scope를 참조한 경우 undefined가 반환됩니다. 
+함수안에서 지역변수가 선언되기 전에 변수 scope를 참조한 경우 `undefined`가 반환됩니다. 
 지역변수 scope 자체는 함수 전체에서 유효하지만, 값은 아직 대입되지 않았기 때문입니다. 
 
 지역변수가 대입되어 있지 않았지만 전역변수를 참조하는 않는 것은 변수가 함수내부에서 호이스팅 되었기 때문입니다. 이런 것은 직감적으로 이해하기 어려운 결과이므로 의도적으로 사용하지 않는 것이 좋습니다.
-
-#### 즉시실행 함수
-
-함수선언과 동시에 실행, 최초 한 번의 실행이 필요한 초기화 코드들을 지역스코프에서 실행할 수 있습니다.
-
-```js
-(function() {
-    statements;
-})();
-```
 
 #### 함수 프로퍼티와 메서드
 
@@ -696,6 +724,9 @@ sayColor.call(this);        // red
 sayColor.call(window);      // red
 sayColor.call(o);           // blue
 ```
+
+> jsBasic_prac02/function.html
+> * 함수 연습문제
 
 ### 원시 래퍼 타입
 

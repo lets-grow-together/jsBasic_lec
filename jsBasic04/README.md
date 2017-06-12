@@ -297,5 +297,5 @@ element.setAttribute(name, value);
 var div = document.getElementById('myDiv');
 console.log(div.setAttribute('id', 'otherId'));
 console.log(div.setAttribute('class', 'otherClass'));
-console.log(div.setAttribute('title', 'Other Text));
+console.log(div.setAttribute('title', 'Other Text'));
 ```

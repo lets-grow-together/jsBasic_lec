@@ -105,13 +105,58 @@ if(pattern.test(text)) {
 문자열 메서드에 정규표현식을 사용
 
 ```js
-str.replace(regexp|substr, newSubstr);
+str.replace(regexp|substr, newSubstr|function);
 ```
 
 ```js
+// str.replace(regexp, newSubstr)
+// 문자열 전체, 대소문자 구분 X
+
 var re = /apples/gi,
     str = 'Apples are round, and apples are juicy.';
     newstr = str.replace(re, 'oranges');
     
 console.log(newstr);
+```
+
+```js
+// str.replace(regexp, newSubstr)
+// 문자열의 특수 파라미터 사용
+
+var re = /(\w+)\s(\w+)/,
+    str = 'John Snow',
+    newstr = str.replace(re, '$2, $&, You know nothing $1');
+
+console.log(newstr)
+```
+
+```js
+// str.replace(regexp, function)
+// 함수에서 특수 파라미터 사용
+
+function replacer(match, p1, p2, p3, offset, string) {
+    // p1 is nondigits([^\d]*),
+    // p2 digits(\d*),
+    // p3 non-alphanumerics([^\w]*)
+
+    return [p1, p2, p3].join(' - ');
+}
+
+var newString = 'abc12345#$*%'.replace(/([^\d]*)(\d*)([^\w]*)/, replacer);
+console.log(newString);  // abc - 12345 - #$*%
+```
+
+```js
+// str.replace(regexp, function)
+
+function styleHyphenFormat(propertyName) {
+    function upperToHyphenLower(match, offset, string) {
+        console.log(match, offset, string);
+        return (offset ? '-' : '') + match.toLowerCase();
+    }
+
+    return propertyName.replace(/[A-Z]/g, upperToHyphenLower);
+}
+
+styleHyphenFormat('borderTop');     // border-top
 ```

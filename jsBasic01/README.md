@@ -1011,6 +1011,50 @@ for(var propName in window) {
 }
 ```
 
+```js
+var human = {
+    head: 1,
+    hand: 2,
+    leg: 2,
+    think: function() {
+        console.log('Think!');
+    }
+}
+
+if (typeof Object.prototype.eat === 'undefined') {
+    Object.prototype.eat = function() {
+        console.log('Eat!');
+    }
+}
+
+for (var i in human) {
+    console.log(i, ': ', human[i]);
+}
+```
+
+```js
+var human = {
+    head: 1,
+    hand: 2,
+    leg: 2,
+    think: function() {
+        console.log('Think!');
+    }
+}
+
+if (typeof Object.prototype.eat === 'undefined') {
+    Object.prototype.eat = function() {
+        console.log('Eat!');
+    }
+}
+
+for (var i in human) {
+    if (human.hasOwnProperty(i)) {          // 인스턴스의 자체 프로퍼티만 출력
+        console.log(i, ': ', human[i]);
+    }
+}
+```
+
 ### while 문
 
 조건에 따라 처리를 반복 실행하기
