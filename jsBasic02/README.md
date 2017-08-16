@@ -6,8 +6,8 @@ Javascript Study Step02
 
 * Object 타입, Array 타입, Date 타입, RegExp 타입, Function 타입 ...
 * 참조 값(객체)이란 특정 **참조 타입**의 인스턴스 입니다.
-* 객체(인스턴스)를 생성할 때는 new 연산자 뒤에 **생성자**를 씁니다.
-* 생성자는 객체를 생성하는 함수입니다.
+* 객체(인스턴스)를 생성할 때는 new 연산자 뒤에 **생성자** 함수를 씁니다.
+* 생성자는 객체(인스턴스)를 생성하는 함수입니다.
 
 다음은 참조타입 Object와 Array의 인스턴스를 생성해서 변수에 할당합니다.
 
@@ -25,14 +25,14 @@ arrayInstance instanceof Array;
 
 #### Object 인스턴스 생성
 
-* new 연산자와 생성자를 사용하여 생성
+* new 연산자와 생성자 함수를 사용하여 인스턴스 객체 생성
 
 ```js
 var obj = new Object();
 
-obj.property = 'value';
-obj.method = function() {
-    console.log('메서드 입니다.');
+obj.myProp = 'myProperty';
+obj.myMethod = function() {
+    console.log('This is myMethod.');
 }
 
 var obj2 = {};              // new Object() 와 동일
@@ -57,19 +57,21 @@ var sherlock = {
 
 ```js
 var obj = {
-    property: 'value',
-    method: function() {
-        console.log('메서드 입니다.');
+    myProp: 'myProperty',
+    myMethod: function() {
+        console.log('This is myMethod.');
     }
 }
 
 // 객체의 프로퍼티 또는 메서드에 접근하는 방법
-console.log( obj.property );
-console.log( obj['property'] );
+console.log( obj.myProp );
+console.log( obj['myProp'] );
 
-var variable = 'property';
+var variable = 'myProp';
 console.log( obj[variable] );
 ```
+
+> object는 property의 집합입니다.
 
 #### Object 인스턴스 프로퍼티, 메서드
 
@@ -77,6 +79,15 @@ console.log( obj[variable] );
 * hasOwnProperty(propertyName) - 프로퍼티가 프로토타입에서 상속받지 않고 해당 객체 인스턴스의 고유한 프로퍼티인지 확인합니다.
 * toString() - 객체를 문자열로 변환해 반환합니다.
 * valueOf() - 객체를 나타내는 문자열이나 숫자, 불리언을 반환합니다. `toString()`과 같은 값을 반환할 때가 많습니다.
+
+```js
+console.log("obj.constructor : ", obj.constructor);
+console.log("obj.hasOwnProperty('myProp') : ", obj.hasOwnProperty('myProp'));
+console.log("obj.hasOwnProperty('constructor') : ", obj.hasOwnProperty('constructor'));
+console.log("obj.hasOwnProperty('toString') : ", obj.hasOwnProperty('toString'));
+console.log("obj.toString() : ", obj.toString());
+console.log("obj.valueOf() : ", obj.valueOf());
+```
 
 ### Array 타입
 
@@ -91,12 +102,17 @@ console.log( obj[variable] );
 ```js
 var arr1 = new Array();
 
-arr[0] = 'a';
-arr[1] = 'b';
-arr[2] = 'c';
+arr1[0] = 'a';
+arr1[1] = 'b';
+arr1[2] = 'c';
+
+console.log('arr1 : ', arr1);
 
 var arr2 = new Array(1, 2, 3);              // 숫자값이 세 개 있는 배열 생성
 var arr3 = new Array(3);                    // 크기가 3인 배열 생성(confuse!)
+
+console.log('arr2 : ', arr2);
+console.log('arr3 : ', arr3);
 
 var arr4 = [];                              // new Array() 와 동일
 ```
@@ -553,6 +569,7 @@ function diff(num1, num2) {
 함수도 값이 올 수 있는 곳이라면 어디든 사용할 수 있습니다. 함수를 변수에 저장하거나, 함수의 매개변수 값으로 넘기거나, 함수의 실행결과로 함수를 반환하는 것이 가능합니다.
 
 ```js
+// 함수를 변수에 저장하거나,
 var callFunction = function(func, param) {
     return func(param);
 }
@@ -561,6 +578,7 @@ function add10(num) {
     return num + 10;
 }
 
+// 함수의 인자값으로 넘길 수 있습니다.
 var result1 = callFunction(add10, 10);
 console.log(result1);                       // 20
 
@@ -573,6 +591,7 @@ console.log(result2);                       // `Hello, Bob';
 ```
 
 ```js
+// 함수의 실행결과로 함수를 반환할 수 있습니다.
 function makeCounter() {
     var count = 0;
 

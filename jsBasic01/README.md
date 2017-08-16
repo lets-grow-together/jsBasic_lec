@@ -214,7 +214,7 @@ console.log(withVar);
 * 숫자
 * 문자
 * 불리언
-* 객체 Object (숫자, 문자, 불리언 값이 아닌 타입들을 다룬다.)
+* 객체 Object : 숫자, 문자, 불리언 값이 아닌 타입들(Object, Array, Date, RegExp, Function)을 다룹니다.
 
 ### typeof 연산자
 
@@ -280,7 +280,7 @@ var message;
 // var age                          // 이 변수는 선언되지 않았습니다.
 
 console.log(message);               // undefined
-console.log(age);                   // 에러
+console.log(age);                   // ReferenceError
 ```
 
 1. 변수를 선언하고 그 변수에 값을 대입하지 않은 경우
