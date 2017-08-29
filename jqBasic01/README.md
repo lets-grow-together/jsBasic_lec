@@ -50,15 +50,15 @@ $.trim(value);
 $('div, a, #wrapper, .on');
 ```
 
-* [Basic Selector | jQuery API Documentation](http://api.jquery.com/category/selectors/basic-css-selectors/)
-* [Hierarchy Selector | jQuery API Documentation](http://api.jquery.com/category/selectors/hierarchy-selectors/)
-* [Attribute Selector | jQuery API Documentation](http://api.jquery.com/category/selectors/attribute-selectors/)
-* [Basic Filter Selector | jQuery API Documentation](http://api.jquery.com/category/selectors/basic-filter-selectors/)
-* [Child Filter Selector | jQuery API Documentation](http://api.jquery.com/category/selectors/child-filter-selectors/)
-* [Content Filter Selector | jQuery API Documentation](http://api.jquery.com/category/selectors/content-filter-selector/)
-* [Form Selector | jQuery API Documentation](http://api.jquery.com/category/selectors/form-selectors/)
-* [Visibility Filter Selector | jQuery API Documentation](http://api.jquery.com/category/selectors/visibility-filter-selectors/)
-* [jQuery Extensions Selector | jQuery API Documentation](http://api.jquery.com/category/selectors/jquery-selector-extensions/)
+* [Basic Selector](http://api.jquery.com/category/selectors/basic-css-selectors/)
+* [Hierarchy Selector](http://api.jquery.com/category/selectors/hierarchy-selectors/)
+* [Attribute Selector](http://api.jquery.com/category/selectors/attribute-selectors/)
+* [Basic Filter Selector](http://api.jquery.com/category/selectors/basic-filter-selectors/)
+* [Child Filter Selector](http://api.jquery.com/category/selectors/child-filter-selectors/)
+* [Content Filter Selector](http://api.jquery.com/category/selectors/content-filter-selector/)
+* [Form Selector](http://api.jquery.com/category/selectors/form-selectors/)
+* [Visibility Filter Selector](http://api.jquery.com/category/selectors/visibility-filter-selectors/)
+* [jQuery Extensions Selector](http://api.jquery.com/category/selectors/jquery-selector-extensions/)
 
 > **셀렉터의 선택**
 > jQuery 셀렉터 선택은 페이지의 성능을 개선하는데 큰 역할을 할 수 있습니다. 일반적으로 다음을 고려해서 선택하는 것이 좋습니다.
@@ -67,6 +67,6 @@ $('div, a, #wrapper, .on');
 > 3. 1, 2, 4번 이외의 셀렉터
 > 4. jQuery 확장 셀렉터(jQuery Extensions Selector)
 >
-> 1은 내부적으로 브라우저 표준 `getElementById`, `getElementsByTagName` 메서드로 대체되므로 모든 환경에서 빠르게 동작합니다.
-> 2도 내부적으로 `getElementsByClassName`, `querySelectorAll` 메서드로 빠르지만 IE 구버전에서는 성능이 떨어질 수 있습니다.
-> 4는 jQuery가 항상 자체 해석을 하기 때문에 늘 속도가 떨어집니다.
+> `1`은 내부적으로 브라우저 표준 `getElementById`, `getElementsByTagName` 메서드로 대체되므로 모든 환경에서 빠르게 동작합니다.
+> `2`도 내부적으로 `getElementsByClassName`, `querySelectorAll` 메서드로 대체되어 빠르지만 IE 구버전에서는 성능이 떨어질 수 있습니다.
+> `4`는 jQuery가 항상 자체 해석을 하기 때문에 늘 속도가 떨어집니다.

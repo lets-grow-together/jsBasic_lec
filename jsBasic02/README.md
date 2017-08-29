@@ -500,8 +500,8 @@ var pattern4 = /\.at/gi;
 
 * 함수는 실행문장들을 집합처럼 감싸고 있습니다.
 * 함수는 코드의 재사용이나 정보의 구성 및 은닉 등에 사용하고, 객체의 행위를 지정하는 데 사용합니다.
-* 함수는 보통 함수 선언 문법으로 정의하거나 함수 표현식으로 변수에 할당합니다.
-* 함수를 다른 객체와 구분되는 특징은 호출할 수 있다는 것입니다.
+* 함수는 보통 함수선언 문법으로 정의하거나 함수 표현식으로 변수에 할당합니다.
+* 함수와 다른 참조타입과 구분되는 특징은 호출할 수 있다는 것입니다.
 
 ```js
 // 함수 선언
@@ -512,11 +512,11 @@ function functionName(param0, param1, ..., paramN) {
 // 함수 호출/실행
 functionName(arg1, arg2, ..., argN);
 
-function sayHi(name, message) {
+function sayHi(name, message) {     // 함수 선언
     console.log('Hello ' + name + ', ' + message);
 }
 
-sayHi('Bob', 'How are you?');
+sayHi('Bob', 'How are you?');       // 함수 호출
 ```
 
 ```js
@@ -529,6 +529,14 @@ var sum = function(num1, num2) {
 * Parameter(인자, 매개변수) : 함수 선언과 함수 내부에서 사용하는 변수
 * Argument(인수) : 함수 호출시 입력 값
 * 함수호출 시 매개변수는 인수로 초기화 됩니다. 인수가 전달되지 않은 매개변수는 `undefined`로 초기화 됩니다.
+
+```js
+function helloEveryone(name0, name1, name2) {
+    console.log('Hello ' + name0 + ', ' + name1 + ', ' + name2);
+}
+
+helloEveryone('cat', 'dog');
+```
 
 #### 반환 값(return)
 
