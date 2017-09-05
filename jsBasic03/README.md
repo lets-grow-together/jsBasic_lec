@@ -44,10 +44,14 @@ window.sayColor();
 
 ```js
 // 스크롤 바를 포함한 브라우저의 가로 뷰포트의 폭 (IE9+)
-var intViewportWidth = window.innerWidth;
+var nViewportWidth = window.innerWidth;
 ```
 
 * DOM을 통해 요소의 정보를 알아봅니다.
+
+```js
+var elContent = document.getElementById('content');
+```
 
 #### 오프셋 크기
 
@@ -192,10 +196,6 @@ function incrementNumber() {
 
 setTimeout(incrementNumber, 500);
 ```
-
-> ex)
-> 1. 현재 시간을 00:00:00 형태로 시간을 출력해보자. (갱신)
-> 2. 1에서 만든 시계를 play, stop 버튼 클릭에 따라 시간을 출력하거나 멈추게 해보자.
 
 ### location 객체
 
