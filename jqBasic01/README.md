@@ -16,7 +16,7 @@ jQuery Study Step01
 
 *****
 
-## jQuery(), $() 함수
+### jQuery(), $() 함수
 
 `jQuery()`를 줄여서 `$()`로 사용(alias)
 
@@ -29,36 +29,75 @@ jQuery.trim(value);
 $.trim(value);
 ```
 
-## 셀렉터(Selector)
+### 셀렉터(Selector)
+
+**기본 셀렉터**
+
+| 셀렉터 | 설명 | 예 |
+| ----- | ----- | ----- |
+| * | 모든 요소 | $('*') |
+| #id | 아이디와 일치하는 요소 | $('#target') |
+| element | 태그명과 일치하는 요소 | $('h1') |
+| .className | 클래스명과 일치하는 요소 | $('.banner') |
+| selector1, selector2, selector3 | 여러 요소를 동시에 찾을 때 ,(쉼표) 사용 | $('a, #wrapper, .on') |
+
+**계층 셀렉터**
+
+| 셀렉터 | 설명 | 예 |
+| ----- | ----- | ----- |
+| ancestor descendant | ancestor요소의 후손 요소들(descendant) | $('#me a') |
+| parent > child | parent요소의 자식(child) | $('#me > div') |
+| prev + next | prev요소의 다음 next요소 | $('#me + div') |
+| prev ~ siblings | prev요소 이후 형제(siblings)요소 | $('#me ~ p') |
+
+**기본 필터**
+
+| 셀렉터 | 설명 | 예 |
+| ----- | ----- | ----- |
+| :animated | 애니메이션 중인 요소 | $('img:animated') |
+| :first | 최소의 요소 구하기 | $('p:first') |
+| :last | 마지막 요소 구하기 | $('p:last') |
+| :not(selector) | 셀렉터에 일치하지 않는 요소 | $('p:not(.red)'), $('input:not(:checked)') |
+| :even | 짝수 번째 요소(0 시작) | $('li:even') |
+| :odd | 홀수 번째 요소(0 시작) | $('li:odd') |
+| :eq(index) | index번째 요소(0 시작) | $('li:eq(3)') |
+| :gt(index) | index 이후 요소(index 미포함) | $('li:gt(2)') |
+| :lt(index) | index 이전 요소(index 미포함) | $('li:lt(2)') |
+
+**속성 필터**
+
+| 셀렉터 | 설명 | 예 |
+| ----- | ----- | ----- |
+| [attr] | 지정한 속성을 갖는 요소 | $('input[type]') |
+| [attr = value] | 속성의 값이 value와 같은 요소 | $('input[type="text"]') |
+| [attr != value] | 속성의 값이 value와 같지않은 요소 | $('input[type!="text"]') |
+| [attr ^= value] | 속성의 값이 value로 시작하는 요소 | $('[lang^="en"]') |
+| [attr $= value] | 속성의 값이 value로 끝나는 요소 | $('[lang$="kr"]') |
+| [attr *= value] | 속성의 값이 value를 포함하는 요소 | $('[lang\*="ko"]') |
+
+**폼 필터**
+
+| 셀렉터 | 설명 | 예 |
+| ----- | ----- | ----- |
+| :enabled | `<input type="text" disabled="enabled">` | $('#target :enabled') |
+| :disabled | `<input type="text" disabled="disabled">` | $('#target :disabled') |
+| :checked | `<input type="checkbox" checked="checked">` | $('#target :checked') |
+| :focus | 포커스가 있는 요소 구하기 | $('#target :focus') |
+
+**기타 필터**
+
+| 셀렉터 | 설명 | 예 |
+| ----- | ----- | ----- |
+| :first-child | 첫 번째 자식 요소 | $('div:first-child') |
+| :last-child | 마지막 자식 요소 | $('div:last-child') |
+| :hidden | 숨김상태의 요소 | $('li:hidden') |
+| :visible | 표시상태의 요소 | $('li:visible') |
+| :empty | 자식요소를 갖지 않는 요소 | $('div:empty') |
+| :has(selector) | 셀렉터와 일치하는 요소를 가지고 있는 요소 | $('div:has(a)') |
 
 * [Selectors | jQuery API Documentation](http://api.jquery.com/category/selectors/)
 * [jQuery Selectors](https://www.w3schools.com/jquery/jquery_ref_selectors.asp)
 * [Try jQuery Selector](https://www.w3schools.com/jquery/trysel.asp)
-
-**기본 셀렉터**
-
-| 셀렉터 | 설명 |
-| ----- | ----- |
-| $(*) | 모든 요소 |
-| $('tagName') | 태그명과 일치하는 요소 |
-| $('#id') | 아이디와 일치하는 요소 |
-| $('.className') | 클래스명과 일치하는 요소 |
-| $('selector1, selector2, selector3') | 여러 요소를 동시에 찾을 때 ,(쉼표) 사용 |
-
-```js
-// div와 a요소, wrapper 아이디를 가진요소, on 클래스는 가진 요소 탐색
-$('div, a, #wrapper, .on');
-```
-
-* [Basic Selector](http://api.jquery.com/category/selectors/basic-css-selectors/)
-* [Hierarchy Selector](http://api.jquery.com/category/selectors/hierarchy-selectors/)
-* [Attribute Selector](http://api.jquery.com/category/selectors/attribute-selectors/)
-* [Basic Filter Selector](http://api.jquery.com/category/selectors/basic-filter-selectors/)
-* [Child Filter Selector](http://api.jquery.com/category/selectors/child-filter-selectors/)
-* [Content Filter Selector](http://api.jquery.com/category/selectors/content-filter-selector/)
-* [Form Selector](http://api.jquery.com/category/selectors/form-selectors/)
-* [Visibility Filter Selector](http://api.jquery.com/category/selectors/visibility-filter-selectors/)
-* [jQuery Extensions Selector](http://api.jquery.com/category/selectors/jquery-selector-extensions/)
 
 > **셀렉터의 선택**
 > jQuery 셀렉터 선택은 페이지의 성능을 개선하는데 큰 역할을 할 수 있습니다. 일반적으로 다음을 고려해서 선택하는 것이 좋습니다.
@@ -70,3 +109,48 @@ $('div, a, #wrapper, .on');
 > `1`은 내부적으로 브라우저 표준 `getElementById`, `getElementsByTagName` 메서드로 대체되므로 모든 환경에서 빠르게 동작합니다.
 > `2`도 내부적으로 `getElementsByClassName`, `querySelectorAll` 메서드로 대체되어 빠르지만 IE 구버전에서는 성능이 떨어질 수 있습니다.
 > `4`는 jQuery가 항상 자체 해석을 하기 때문에 늘 속도가 떨어집니다.
+
+*****
+
+### 탐색
+
+| 메서드 | 설명 |
+| ----- | ----- |
+| .eq(index) | 선택한 컬렉션 중 index에 해당하는 엘리먼트 |
+| .filter(expr) | 선택한 컬렉션 중 표현식과 일치하는 엘리먼트, 표현식에는 selector, function, element, jQuery 객체가 올수 있습니다. |
+| .first() | 선택한 컬렉션 중 첫 번째 엘리먼트 |
+| .has(selector) | 선택한 컬렉션 중 selector 항목을 가지고 있는 엘리먼트 |
+| .is(selector) | 선택한 컬렉션 중 selector 항목을 가지고 있는 엘리먼트 |
+| .last() | 선택한 컬렉션 중 마지막 엘리먼트 |
+| .not(expr) | 선택한 컬렉션 중 표현식과 일치하지 않는 엘리먼트 |
+| .children([selector]) | 선택한 엘리먼트의 자식 중 selector에 해당하는 엘리먼트 |
+| .closest(selector) | 선택한 엘리먼트의 가장 가까운 조상 중 selector에 해당하는 엘리먼트 |
+| .find(selector) | 선택한 엘리먼트의 selector에 해당하는 후손 엘리먼트 |
+| .next([selector]) | 선택한 엘리먼트의 selector에 해당하는 다음 형제 엘리먼트 |
+| .prev([selector]) | 선택한 엘리먼트의 selector에 해당하는 이전 형제 엘리먼트 |
+| .parent([selector]) | 선택한 엘리먼트의 selector에 해당하는 부모 엘리먼트 |
+| .siblings([selector]) | 선택한 엘리먼트의 selector에 해당하는 형제 엘리먼트(자신 제외) |
+
+### css 값 가져오기, 설정하기
+
+* .css(propertyName)
+* .css(propoertyName, value)
+* .css({prop1: value1, prop2: value2, ...})
+
+```js
+var sBgcolor = $('div').css('backgroundColor');
+$('div').css('background-color', '#ff0000');
+$('div').css({'margin': '10px', 'padding': '5px', 'color': '#993399});
+```
+
+* .width()
+* .height()
+* .width(value)
+* .height(value)
+
+```js
+var nDivWidth = $('div').width();
+$('div').width(300);
+$('div').width('100px');
+$('div').height('+=100');
+```
