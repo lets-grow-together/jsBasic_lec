@@ -131,7 +131,9 @@ $.trim(value);
 | .parent([selector]) | 선택한 엘리먼트의 selector에 해당하는 부모 엘리먼트 |
 | .siblings([selector]) | 선택한 엘리먼트의 selector에 해당하는 형제 엘리먼트(자신 제외) |
 
-### css 값 가져오기, 설정하기
+### 스타일(Style)
+
+#### css 값 가져오기, 설정하기
 
 * .css(propertyName)
 * .css(propoertyName, value)
@@ -140,7 +142,7 @@ $.trim(value);
 ```js
 var sBgcolor = $('div').css('backgroundColor');
 $('div').css('background-color', '#ff0000');
-$('div').css({'margin': '10px', 'padding': '5px', 'color': '#993399});
+$('div').css({'margin': '10px', 'padding': '5px', 'color': '#993399'});
 ```
 
 * .width()
@@ -154,3 +156,146 @@ $('div').width(300);
 $('div').width('100px');
 $('div').height('+=100');
 ```
+
+### 속성(Attribute)
+
+#### 속성 값 가져오기, 적용하기, 제거하기
+
+* .attr(attributeName)
+* .attr(attributeName, value)
+* .removeAttr(attributeName)
+
+```js
+var sSrcPath = $('img').attr('src');
+$('img').attr('src', 'logo.png');
+$('input').removeAttr('title');
+```
+
+#### 폼 요소 값 가져오기, 적용하기
+
+* .val()
+* .val(value)
+
+```js
+var sValue = $('input[type="text"].val()');
+$('input[type="text"]').val('This is Value!');
+```
+
+#### 폼 요소 property 가져오기, 적용하기
+
+* .prop(propertyName)
+* .prop(propertyName, value)
+
+```js
+var bIsChecked = $('input[type="checkbox"]').prop('checked');
+$('input[type="checkbox"]').prop('checked', true);
+```
+
+### 조작(Manipulation)
+
+#### 클래스 속성(Class Attribute)
+
+**클래스 값 추가, 삭제, 토글**
+
+* .addClass(className)
+* .removeClass(className)
+* .toggleClass(className)
+
+```js
+$('div').addClass('on');
+$('div').removeClass('on');
+$('div').toggleClass('on');
+```
+
+**해당 클래스를 가지고 있는지 판단**
+
+* .hasClass(className)
+
+```js
+if($('#target').hasClass('on') {
+    // ...
+})
+```
+
+**타겟 외부에 DOM 추가, 제거**
+
+* .wrap(wrappingElement)
+* .unwrap()
+
+```js
+$('.inner').wrap('<div class="outer"></div>');
+$('.inner').unwrap();
+```
+
+**타겟 앞, 뒤에 DOM 추가하기
+
+* .before(content)
+* .after(content)
+
+```js
+$('.middle').before('<p>before</p>');
+$('.middle').after('<p>after</p>');
+```
+
+* .insertBefore(target)
+* .insertAfter(target)
+
+```js
+$('<p>before</p>').insertBefore('.middle');
+$('<p>after</p>').insertAfter('.middle');
+```
+
+**타겟 내부의 처음, 마지막에 DOM 추가하기
+
+* .prepend(content)
+* .append(content)
+
+```js
+$('.outer').prepend('<p>test</p>');
+$('.outer').append('<p>test</p>');
+```
+
+* .prependTo(target)
+* .appendTo(target)
+
+```js
+$('<p>test</p>').prependTo('.outer');
+$('<p>test</p>').appendTo('.outer');
+```
+
+**타겟 내부의 html 가져오기, 설정하기**
+
+* .html()
+* .html(htmlString)
+
+```js
+var sHtmlString = $('div').html();
+$('div').html('<p>new content <span class="on">added</span></p>');
+```
+
+**타겟 내부에 text 가져오기, 설정하기**
+
+* .text()
+* .text(text)
+
+```js
+var sText = $('div').text();
+$('div').text('<p>new content <span class="on">added</span></p>');
+```
+
+**타겟 복제하기**
+
+* .clone()
+
+```js
+$('.hello').clone().appendTo('.goodbye');
+```
+
+**타겟 내부 비우기**
+
+* .empty()
+
+**타겟 제거하기**
+
+* .remove()
+* .detach()
