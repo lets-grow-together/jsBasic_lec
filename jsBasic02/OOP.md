@@ -9,6 +9,19 @@ ECMAScript 에서는 객체를 "프로퍼티의 순서 없는 컬렉션이며, �
 
 모든 객체는 참조 타입을 바탕으로 생성되는데, 이 바탕이 되는 타입은 네이티브 타입일 수도 있고 개발자가 정의한 타입일 수도 있습니다.
 
+**자바스크립트에서 객체를 생성하는 방법**
+
+* 객체리터럴
+* 생성자 함수(`new Object()`)
+
+```js
+// 객체 리터럴
+var obj = {}
+
+// Object() 생성자 함수
+var obj = new Object();
+```
+
 *****
 
 ## 객체를 만드는 가장 단순한 방법
@@ -17,6 +30,7 @@ Object 의 인스턴스를 만들고 여기에 프로퍼티와 메서드를 추�
 
 ```js
 var animal = new Object();
+// var animal = {};
 
 animal.name = 'MS';
 animal.age = 21;
@@ -26,8 +40,8 @@ animal.sayName = function() {
     console.log(this.name);
 }
 
-var animal = {
-    name: 'MS',
+var animal2 = {
+    name: 'MS2',
     age: 21,
     job: 'TMT',
     
@@ -35,6 +49,8 @@ var animal = {
         console.log(this.name);
     }
 }
+
+animal.sayName();
 ```
 
 객체 하나를 생성할 때는 편리하지만, 객체를 여러개 만들 때는 중복된 코드를 매우 많이 써야하는 문제점이 있습니다. 이 문제를 해결하기 위해 함수를 만들어 객체를 생성합니다.
@@ -113,7 +129,7 @@ var animal2 = Animal('JY', 22, 'Smart');
 ```js
 // 생성자로 사용
 var animal = new Animal('MS', 21, 'TMT');
-person.sayName();   // 'MS'
+animal.sayName();   // 'MS'
 
 // 함수로 호출
 Animal('JY', 22, 'Smart');

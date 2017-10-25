@@ -159,7 +159,7 @@ $('div').height('+=100');
 
 ### 속성(Attribute)
 
-#### 속성 값 가져오기, 적용하기, 제거하기
+#### 요소의 속성 값 가져오기, 적용하기, 제거하기
 
 * .attr(attributeName)
 * .attr(attributeName, value)
@@ -171,6 +171,41 @@ $('img').attr('src', 'logo.png');
 $('input').removeAttr('title');
 ```
 
+#### 요소의 property 값 가져오기, 적용하기
+
+* .prop(propertyName)
+* .prop(propertyName, value)
+
+```js
+var bIsChecked = $('input[type="checkbox"]').prop('checked');
+$('input[type="checkbox"]').prop('checked', true);
+```
+
+> attr() / prop()
+>
+> ```html
+> <a href="#content1" id="anchor1"></a>
+> <input type="checkbox" id="checkbox1">
+> <input type="checkbox" id="checkbox2" checked>
+> ``` 
+
+>```js
+> var welLink = $('#anchor1'),
+>     welCheck1 = $('#checkbox1'),
+>     welCheck2 = $('#checkbox2');
+>
+> console.log('anchor prop: ', welLink.prop('href'));
+> console.log('anchor attr: ', welLink.attr('href'));
+>
+> console.log('checkbox1 prop: ', welCheck1.prop('checked'))
+> console.log('checkbox1 attr: ', welCheck1.attr('checked'))
+>
+> console.log('checkbox2 prop: ', welCheck2.prop('checked'))
+> console.log('checkbox2 attr: ', welCheck2.attr('checked'))
+> ```
+>
+> attr()은 html attribute 를 다루고, prop()은 javascript dom 객체의 property 를 다룹니다.
+
 #### 폼 요소 값 가져오기, 적용하기
 
 * .val()
@@ -179,16 +214,6 @@ $('input').removeAttr('title');
 ```js
 var sValue = $('input[type="text"].val()');
 $('input[type="text"]').val('This is Value!');
-```
-
-#### 폼 요소 property 가져오기, 적용하기
-
-* .prop(propertyName)
-* .prop(propertyName, value)
-
-```js
-var bIsChecked = $('input[type="checkbox"]').prop('checked');
-$('input[type="checkbox"]').prop('checked', true);
 ```
 
 ### 조작(Manipulation)

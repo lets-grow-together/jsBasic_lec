@@ -3,8 +3,8 @@ Function 타입
 
 ## 실행 컨텍스트와 스코프
 
-* 실행 컨텍스트는 변수나 함수같은 다른 데이터에 접근할 수 있는지를 규정합니다.
-* 실행 컨텍스트는 크게 전역 컨텍스트와 함수(로컬) 컨텍스트 두 가지 타입이 있습니다.
+* 실행 컨텍스트는 변수나 함수 같은 다른 데이터에 접근할 수 있는지 여부를 규정합니다.
+* 실행 컨텍스트는 크게 **전역 컨텍스트**와 **로컬(함수) 컨텍스**트 두 가지 타입이 있습니다.
 * 각 실행 컨텍스트에는 변수 객체(Variable Object)가 연결되어 있으며 해당 컨텍스트에서 정의된 모든 변수와 함수는 이 변수 객체에 존재합니다.
 * 가장 바깥쪽에 존재하는 실행 컨텍스트는 전역 컨텍스트(window)입니다.
 * 함수를 호출하면 독자적인 실행 컨텍스트가 생성되고(로컬 컨텍스트), 코드를 실행 합니다.
@@ -34,11 +34,13 @@ function changeColor()  {
 changeColor();
 ```
 
-이 코드에는 실행 컨텍스트가 세 개 있습니다. 전역 컨텍스트, changeColor() 의 로컬 컨텍스트, swapColors() 의 로컬컨텍스트 세 개 입니다.
+이 코드에는 전역 컨텍스트, `changeColor()` 의 로컬 컨텍스트, `swapColors()` 의 로컬컨텍스트 세 개의 컨텍스트가 있습니다.
 
 ![context](img/context.png)
 
 내부 컨텍스트는 스코프 체인을 통해 상위 컨텍스트의 변수나 함수에 접근할 수 있지만, 외부에서 내부로 접근할 수는 없습니다.
+
+***** 
 
 ## 클로저
 
@@ -47,10 +49,12 @@ changeColor();
 1. 함수를 실행하면 실행 컨텍스트와 스코프 체인이 생성됩니다. 
 2. 전역 컨텍스트의 변수객체는 항상 존재하지만 로컬 컨텍스트(함수)의 변수객체(활성화 객체)는 함수를 실행하는 동안에만 존재합니다.
 3. 외부 함수의 변수객체는 내부함수의 스코프 체인의 두번째 객체가 됩니다.
-4. 스코프 체인은 전역 컨택스트까지 이어지고, 함수의 실행이 끝나면 로컬 변수객체(활성화 객체)는 파괴되고 메모리에는 전역 스코프만 남습니다.
+4. 스코프 체인은 전역 컨텍스트까지 이어지고, 함수의 실행이 끝나면 로컬 변수객체(활성화 객체)는 파괴되고 메모리에는 전역 스코프만 남습니다.
 5. 클로저는 외부함수가 실행을 마쳤어도 클로저에서 외부함수의 스코프를 참조하고 있으므로 외부함수의 활성화 객체가 파괴되지 않고 메모리에 남아있어, 클로저에서 접근이 가능합니다. 
 
 ```js
+var scope = 'global';
+
 function outer() {
     var scope = 'outer';
     
@@ -61,8 +65,9 @@ function outer() {
 
 var inner = outer();            // 클로저 형성
 
+console.log(scope);
 console.log(inner);
-inner()
+inner();
 ```
 
 ```js
@@ -88,6 +93,7 @@ var myCounter = function() {
 }();
 
 // increment, getValue 메서드는 계속해서 value라는 변수에 접근할 수 있습니다.
+console.log(value);
 console.log(myCounter);
 myCounter.increment(10);
 myCounter.getValue();
@@ -95,7 +101,9 @@ myCounter.increment();
 myCounter.getValue();
 ```
 
-#### 즉시실행 함수
+*****
+
+## 즉시실행 함수
 
 * 익명함수를 정의하는 동시에 실행, 최초 한 번의 실행이 필요한 초기화 코드들을 지역스코프에서 실행하여 전역변수를 최소화 할 수 있습니다.
 * 블록스코프를 흉내낼 수 있습니다.
@@ -112,8 +120,8 @@ myCounter.getValue();
 ```
 
 * 함수선언으로 정의된 함수는 바로 실행할 수는 없습니다.
-* 자바스크립트는 function 키워드를 함수 선언의 시작으로 인식하여, 함수 선언 다음에 괄호를 사용할 수 없습니다.
-* 함수 선얼을 `()` 괄호로 감싸거나 연산자 `+, -` 등을 사용해서 함수 표현식으로 바꿀수 있습니다.
+* 자바스크립트는 `function` 키워드를 함수 선언의 시작으로 인식하여, 함수 선언 다음에 바로 실행할 수 없습니다.
+* 함수 선언을 `()` 괄호로 감싸거나 연산자 `+, -` 등을 사용해서 함수 표현식으로 바꾸고 바로 실행할 수 있습니다.
 
 ```js
 function doItImmediately() {
@@ -123,6 +131,14 @@ function doItImmediately() {
 function() {
     // statement
 }();                // 에러!
+
+(function doItImmediately() {
+    // statement
+})();
+
+(function() {
+    // statement
+})();
 ```
 
 ```js
@@ -166,6 +182,7 @@ printNumber(10);
 ```js
 function max() {
     var result = Number.NEGATIVE_INFINITY;
+    console.log(arguments);
     
     for(var i = 0, len = arguments.length; i < len; i++) {
         if(result < arguments[i]) {
@@ -175,10 +192,11 @@ function max() {
     return result;
 }
 
-console.log(max(12, 23, 23, 5, 12, 123));
+max(12, 23);
+max(12, 23, 23, 5, 12, 123);
 ```
 
-> arguments 객체로 인수에 접근 가능하다고 해도, 구현가능하다면 명명된 매개변수로 접근하는 것이 가독성 및 인수 관리 측면에서 더 바람직합니다.
+> `arguments` 객체로 인수에 접근 가능하다고 해도, 구현가능하다면 명명된 매개변수로 접근하는 것이 가독성 및 인수 관리 측면에서 더 바람직합니다.
 
 ### this
 
@@ -200,15 +218,21 @@ console.log(max(12, 23, 23, 5, 12, 123));
 ```js
 var name = 'The Window';
 
-var object = {
+var obj = {
     name: 'My Object',
 
-    getNameFunc: function() {
-        return this.name;
+    getName: function() {
+        console.log( "getName's this : " + this );
+        console.log( "getName's this.name : " + this.name );
     }
 };
 
-console.log( object.getNameFunc() );
+obj.getName();
+
+console.log( this );
+console.log( name );
+console.log( this.name );
+console.log( window.name );
 ```
 
 #### 함수 호출 패턴
@@ -217,19 +241,27 @@ console.log( object.getNameFunc() );
 전역함수 뿐만 아니라, 내부함수, 메서드의 내부함수일 경우에도 `this`는 전역객체에 바인딩 됩니다.
 
 ```js
-var name = 'The Window';
+function outer() {
+    console.log("outer's this : " + this);
+}
 
-var object = {
-    name: 'My Object',
+outer();
 
-    getNameFunc: function() {
-        return function() {
-            return this.name;
-        }
+console.log( outer );
+console.log( window.outer );
+```
+
+```js
+function outer() {
+    console.log("outer's this : " + this);
+    
+    function inner() {
+        console.log("inner's this : " + this);
     }
-};
+    inner();
+}
 
-console.log( object.getNameFunc()() );
+outer();
 ```
 
 ```js
@@ -238,16 +270,34 @@ var name = 'The Window';
 var object = {
     name: 'My Object',
 
-    getNameFunc: function() {
-        var that = this;                // this 유지 : this === object
+    getName: function() {
+        console.log("getName's this.name : " + this.name);
 
         return function() {
-            return that.name;
+            console.log("getName's inside function's this.name : " + this.name);
         }
     }
 };
 
-console.log( object.getNameFunc()() );
+object.getName()();
+```
+
+```js
+var name = 'The Window';
+
+var obj = {
+    name: 'My Object',
+
+    getName: function() {
+        var that = this;                // this 유지 : that === this === obj
+
+        return function() {
+            console.log(that.name);
+        }
+    }
+};
+
+obj.getName()();
 ```
 
 #### 생성자 호출 패턴
@@ -279,6 +329,8 @@ function sayColor() {
 sayColor();
 sayColor.call(o);
 ```
+
+*****
 
 ```js
 function Person(name, age, job) {
