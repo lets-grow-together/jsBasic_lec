@@ -88,25 +88,24 @@ document.body.clientWidth;
 document.body.clientHeight;
 
 // viewport 구하기 예시
-var pageWidth = 
-    window.innerWidth ||
-    document.documentElement.clientWidth ||
-    document.body.clientWidth;
-
-function getViewportWidth() {
-    var pageWidth = window.innerWidth;
+function getViewportHeight() {
+    var pageHeight = window.innerHeight;
     
-    if(typeof pageWidth != 'number') {
+    if(typeof pageHeight != 'number') {
         // BackCompat : quirks Mode
         // CSS1Compat : standard
         if (document.compatMode == 'CSS1Compat') {
-            pageWidth = document.documentElement.clientWidth;
+            pageHeight = document.documentElement.clientHeight;
         } else {
-            pageWidth = document.body.clientWidth;
+            pageHeight = document.body.clientHeight;
         }
     }
     
-    return pageWidth;
+    return pageHeight;
+}
+
+function getViewportHeight () {
+    window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 }
 ```
 
