@@ -102,8 +102,8 @@ function Animal(name, age, job) {
     }
 }
 
-var animal1 = Animal('MS', 21, 'TMT');
-var animal2 = Animal('JY', 22, 'Smart');
+var animal1 = new Animal('MS', 21, 'TMT');
+var animal2 = new Animal('JY', 22, 'Smart');
 ```
 
 팩터리 함수와 다른 점
