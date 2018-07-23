@@ -105,7 +105,7 @@ function getViewportHeight() {
 }
 
 function getViewportHeight () {
-    window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    return window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 }
 ```
 
