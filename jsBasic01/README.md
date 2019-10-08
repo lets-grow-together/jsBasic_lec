@@ -1,6 +1,5 @@
 
-Javascript Study Step01
-=====
+# Javascript Study Step01
 
 ## 자바스크립트 학습(기술 관점)
 
@@ -22,6 +21,8 @@ Javascript Study Step01
 
 * 데이터 가져오기
     - 페이지 갱신 없이 서버로부터 데이터 가져오기
+
+*****
 
 ## 언어의 기초
 
@@ -90,14 +91,15 @@ console.log(test);
 </html>
 ```
 
-### 식별자
+### 식별자(Identifier)
 
 식별자란 변수나 함수, 프로퍼티, 함수 매개변수의 이름
 
 * 첫 번째 문자는 반드시 글자나 밑줄( _ ), 달러($) 중 하나(숫자 사용불가)
-* 예약어 사용불가
+* 예약어(키워드) 사용불가
 
-예약어 : 자바스크립트에서 사용하고 있는 혹은, 사용될 예정인 이름
+- 키워드 : 스크립트에서 수행되어야 할 동작을 식별하는 단어(제어문의 시작과 끝 / 특정한 조작 목적)
+- 예약어 : 자바스크립트에서 사용하고 있는 혹은, 사용될 예정인 이름
 
 ```js
 abstract boolean break byte case catch char class const continue debugger default delete do double else enum export extends false final finally float for function goto if implements import in instanceof int interface long native new null package private protected public return short static super switch synchronized this throw throws transient try typeof var volatile void while with...
@@ -126,24 +128,12 @@ var message = 20;       // 어떤 값이든
 var message = true;     // 할당할 수 있다.
 ```
 
-헝가리언 표기법
-
-| 접두사 | 데이터 타입        | 예                      |
-| ------ | ------------------ | ----------------------- |
-| a      | Array              | aUsers                  |
-| s      | String             | sCompanyName            |
-| n      | Number             | nTotalCount             |
-| b      | Boolean            | bFlag, bActivation      |
-| o      | Object             | oController             |
-| ht     | Hash Table         | htUserInfo, htColorCode |
-| d      | Date               | dToday, dCurrentTime    |
-| el     | Html Element       | elTableList             |
-| rx     | Regular Expression | rxEmailFormat           |
-
 ### 변수 범위
 
-* 모든 변수에는 범위(스코프)가 있습니다. 변수에 접근할 수 있는 범위이며 그 영역 바깥에서는 변수에 접근 할 수 없습니다.
-* 변수에는 전역 변수(global variable)와 지역 변수(local variable)이 있으며, 전역 변수는 자바스크립트 코드 전체에서 사용할 수 있고, 지역 변수는 선언된 함수 내부에서만 사용할 수 있습니다.
+* 모든 변수에는 유효범위(스코프)가 있습니다. 변수에 접근할 수 있는 범위이며 그 영역 바깥에서는 변수에 접근 할 수 없습니다.
+* 변수에는 전역 변수(global variable)와 지역 변수(local variable)이 있으며,
+* 전역 변수는 자바스크립트 코드 전체에서 사용할 수 있고,
+* 지역 변수는 선언된 함수 내부에서만 사용할 수 있습니다.
 
 ```js
 var scope = 'Global';
@@ -214,7 +204,7 @@ console.log(withVar);
 * 숫자
 * 문자
 * 불리언
-* 객체 Object : 숫자, 문자, 불리언 값이 아닌 타입들(Object, Array, Date, RegExp, Function)을 다룹니다.
+* 객체 Object : 숫자, 문자, 불리언 값이 아닌 타입들(Object, Array, Date, RegExp, Function...)
 
 ### typeof 연산자
 
@@ -254,6 +244,10 @@ var arr1 = [1, 2, 3],
     
 console.log(arr1 === arr2);
 console.log(arr1 === anotherArr);
+arr1.push('a');
+console.log(arr1);
+console.log(arr2);
+console.log(anotherArr);
 ```
 
 ```js
@@ -261,6 +255,8 @@ var arr1 = [1, 2, 3],
     arr2 = arr1,
     anotherArr = arr1.slice();
     
+console.log(arr1 === arr2);
+console.log(arr1 === anotherArr);
 arr1.push('a');
 console.log(arr1);
 console.log(arr2);
@@ -345,7 +341,7 @@ if (a + b === 0.3) {
 console.log(a + b);
 ```
 
-#### 숫자 변환
+### 숫자 변환
 
 ```js
 var str = "3.14";
@@ -371,9 +367,9 @@ console.log(Number(true));
 console.log(Number(null));
 ```
 
-> 숫자형 값 중에는 NaN(Not a Number) 라는 특별한 값이 있습니다. 이 값은 숫자를 반활할 것으로 의도한 조작이 실패했을 때 반환하는 값입니다.
+> 숫자형 값 중에는 NaN(Not a Number) 라는 특별한 값이 있습니다. 이 값은 숫자를 반환할 것으로 의도한 조작이 실패했을 때 반환하는 값입니다.
 
-#### 진수 표기
+### 진수 표기
 
 * 10진수 : 숫자만 쓴다
 * 8진수 : 숫자 앞에 0을 붙인다
@@ -405,7 +401,7 @@ var pNum4 = parseInt('10', 16);     // 16진수 10은 10진수 16
 
 > `partseInt()`에  진법 매개변수를 넘기지 않으면 브라우저에서 숫자의 형식을 판단하도록 일임하는 것이므로 의도와 다른 결과가 나올 수 있습니다. 항상 진법 매개변수를 명시해서 오류를 예방하는 편이 좋습니다.
 
-#### Math 객체
+### Math 객체
 
 수학연산에 관련된 객체
 
@@ -434,8 +430,6 @@ var num2 = Math.floor( Math.random() * 100 ) + 1;
 var num3 = Math.floor( Math.random() * 9 ) + 2;
 ```
 
-> 주사위 눈처럼 1 ~ 6 사이의 랜덤한 숫자를 출력해 보세요.
-
 [Math - JavaScript | MDN](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Math)
 
 ### 문자열 타입
@@ -461,7 +455,7 @@ var myString = "Javascript '기초' 과정";
 var str = 'It\'s alright';
 ```
 
-#### 문자열 생성
+### 문자열 생성
 
 **문자열 객체의 인스턴스 생성**
 
@@ -497,7 +491,7 @@ console.log('typeof strLiteral: ', typeof strLiteral);  // string
 
 > Javascript 에서는 주로 리터럴 방식으로 문자열을 선언합니다.
 
-#### 문자열 연결
+### 문자열 연결
 
 * `+` 연산자를 사용하여 문자열을 연결합니다.
 * 문자열은 일단 만들어지면 그 값을 바꿀 수 없고, 변수에 저장된 문자열을 바꾸려하면 기존의 문자열을 파괴하고 새 문자열로 변경됩니다.
@@ -509,7 +503,7 @@ lang = lang + "Script";
 console.log(lang);
 ```
 
-#### 문자열 프로퍼티
+### 문자열 프로퍼티
 
 * length
 
@@ -519,7 +513,7 @@ var str = "Hello world!";
 console.log(str.length);
 ```
 
-#### 문자열 메서드
+### 문자열 메서드
 
 * charAt(index) : 인덱스에 해당하는 문자열 찾기
 
@@ -838,7 +832,7 @@ if(condition1) {
 } else if(condition2) {
     // condition2가 true일 경우 실행
 } 
-...
+// ...
 else {
     // 어느 조건식도 true가 아닌 경우에 실행
 }
@@ -875,16 +869,6 @@ else {
 ```
 
 **단 한 줄의 코드만 실행하더라고 코드 블록을 쓰기를 권합니다. 조건에 따라 어느 문장을 실행하는지 분명하게 파악 가능합니다.**
-
-> jsBasic_prac01/if.html
-> - str의 문자열 길이가 10 이하일 경우 str의 값을 출력하고, 그보다 클 경우에는 "입력할 수 있는 글자는 최대 10글자입니다."라고 출력해주세요.
-> - subject의 문자열에 "[javascript스터디]"가 포함되어 있을 경우 "OK"를 출력하고, 포함되어 있지 않을 경우에는 "유효하지 않은 메일 제목입니다."를 출력해주세요.
-> - grade의 값에 따라 아래와 같이 출력해 주세요.
->    40미만은 F학점, 
->    40이상은 D학점,
->    55이상은 C학점,
->    70이상은 B학점,
->    85이상은 A학점
 
 ### switch문
 
@@ -938,19 +922,7 @@ switch (day) {
 }
 ```
 
-> jsBasic_prac01/switch.html
-> - color 값에 따라 아래와 같이 출력해 주세요
->    'red' 또는 'FF0000' 일 경우 'set red color'
->    'green 또는 '00FF00' 일 경우 'set green color'
->    'blue' 또는 '0000FF' 일 경우 'set blue color'
->    그 외에는 'red, green, blue' 만 컬러 설정이 가능합니다. 
-> - 각 달에 따라 아래와 같이 출력해주세요.
->    입력한 달이 1일 경우 "1월은 31일이 있습니다." 
->    입력한 달이 2일 경우 "2월은 28일이 있습니다." ... (중략)
->    입력한 달이 12일 경우 "12월은 31일이 있습니다."
->    입력한 달이 1~12가 아닐 경우, "1부터 12까지 올바른 달을 입력해 주세요."
-
-#### for 문
+### for 문
 
 지정된 횟수만큼 반복 처리하기
 
@@ -973,32 +945,6 @@ var objLi = document.getElementsByTagName('li');
 for (var i = 0, total = objLi.length; i < total; i++) {
     objLi[i].className = 'on';
 }
-```
-
-> jsBasic_prac01/for.html
-> - '자바스크립트 스터디' 를 한 글자씩 출력해 주세요.
-> - 10부터 30 까지 짝수만 출력해 주세요.
-> - ul 안에 'data 1' 부터 'data 12' 까지의 글자를 가진 12개의 li를 생성해 주세요.
->    각각의 li는 style1, style,2, style3 의 클래스를 순차적으로 적용해 주세요.
-
-> jsBasic_prac01/forfor.html
-> - 구구단을 아래와 같이 출력해 주세요. (출력해야 할 값들을 변수에 담아 한 번만 출력해주세요.)
-
-```bash
-2 * 1 = 2
-2 * 2 = 4
-...(중략)
-9 * 8 = 72
-9 * 9 = 81
-```
-
-> - 구구단을 아래와 같이 출력해 주세요. (출력해야 할 값들을 변수에 담아 한 번만 출력해주세요.)
-
-```bash
-2 * 1 = 2	2 * 2 = 4	...(중략)		2 * 9 = 18
-3 * 1 = 3	3 * 2 = 6	...(중략)		3 * 9 = 27
-...
-9 * 1 = 9	9 * 2 = 18	...(중략)		9 * 9 = 81
 ```
 
 ### for - in 문
@@ -1074,9 +1020,6 @@ while(i <= 10) {
 
 > 무한루프 주의, i가 순환문 안에서 업데이트 되야한다.
 
-> jsBasic_prac01/while.html
-> - 빈 배열을 하나 생성하고, 그 안에 0~10 사이의 임의의 수를 생성해서 넣습니다. 배열의 길이가 5개 될 때까지 임의의 수를 넣은 후, 배열을 출력해 주세요.
-
 ### do-while 문
 
 ```js
@@ -1089,26 +1032,6 @@ do {
 do {
     value = window.prompt('end가 입력될 때까지 계속 입력 받습니다.');
 } while(value != 'end');
-```
-
-> jsBasic_prac01/dowhile.html
-> 무인도 탈출 게임
-> 1. '무인도에 도착했습니다' 출력
-> 2. 두개의 1~6 까지의 임의의 숫자를 생성하고 출력
-> 3. 숫자가 같지 않을 경우, 다시 임의의 숫자 생성
-> 4. 같은 숫자가 나오거나, 같지 않은 숫자가 3번 연속으로 나오면 '무인도 탈출' 출력
-
-```bash
-무인도에 도착했습니다.
-주사위를 돌렸습니다!		주사위 1: 5		주사위 2: 1
-주사위를 돌렸습니다!		주사위 1: 5		주사위 2: 5
-무인도 탈출!
-
-무인도에 도착했습니다.
-주사위를 돌렸습니다!		주사위 1: 5		주사위 2: 1
-주사위를 돌렸습니다!		주사위 1: 2		주사위 2: 3
-주사위를 돌렸습니다!		주사위 1: 4		주사위 2: 1
-무인도 탈출!
 ```
 
 ### break, continue
@@ -1219,14 +1142,7 @@ console.log('strToNum2 : ', strToNum2, typeof strToNum2);
 
 * https://developer.mozilla.org/ko/docs/Web/JavaScript
 
-**w3schools**
-
-* Reference : http://www.w3schools.com/jsref/default.asp
-
 **생활코딩**
 
 * https://opentutorials.org/course/743
 * https://opentutorials.org/course/1375
-
-**코드스쿨**
-* https://www.codeschool.com/

@@ -75,7 +75,7 @@ var elContent = document.getElementById('content');
 * 기능탐지
 
 ```js
-// window창 안쪽 크기
+// window창 안쪽 크기 (IE9+)
 window.innerWidth;
 window.innerHeight;
 
@@ -105,7 +105,11 @@ function getViewportHeight() {
 }
 
 function getViewportHeight () {
-    return window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    return window.innerHeight || document.documentElement.clientHeight;
+}
+
+function getViewportWidth () {
+    return document.documentElement.clientWidth;
 }
 ```
 
